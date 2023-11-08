@@ -17,7 +17,7 @@ import java.util.Optional;
 @Service
 public class AssociateService {
 
-    private final static String ASSOCIATE_NOT_FOUND = "Não encontramos nenhum associado com o CPF informado.";
+    private final static String ASSOCIATE_NOT_FOUND = "Não encontramos nenhum associado com o identificador informado.";
     private final static String ASSOCIATE_ALREADY_EXISTS = "O CPF informado já foi cadastrado anteriormente.";
 
     private final AssociateRepository repository;
