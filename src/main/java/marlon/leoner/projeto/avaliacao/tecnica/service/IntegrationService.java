@@ -1,7 +1,8 @@
 package marlon.leoner.projeto.avaliacao.tecnica.service;
 
-import lombok.AllArgsConstructor;
 import marlon.leoner.projeto.avaliacao.tecnica.domain.response.ValidateCpfResponse;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@AllArgsConstructor
 @Service
 public class IntegrationService {
 
-    private final static String TOKEN = "5205|Rl0ulyyXSCbh3rMlTyUOa5A54i1KI3VB";
-    private final static String TYPE = "cpf";
+    @Value("${cpf.validator.token}")
+    private String TOKEN;
+
+    @Value("${cpf.validator.type}")
+    private String TYPE;
 
     public Boolean isCpfValid(String cpf) {
         ValidateCpfResponse validate = this.validateCpf(cpf);
