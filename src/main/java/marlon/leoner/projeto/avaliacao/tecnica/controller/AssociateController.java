@@ -32,17 +32,17 @@ public class AssociateController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "Sucesso ao buscar todos os associados.", response = AssociateDTO.class, responseContainer = "List")
     })
-    private ResponseEntity<List<AssociateDTO>> getAllAssociates() {
+    public ResponseEntity<List<AssociateDTO>> getAllAssociates() {
         return ResponseEntity.ok(aggregation.getAllAssociates());
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<AssociateDTO> getAssociate(@PathVariable("id") String id) {
+    public ResponseEntity<AssociateDTO> getAssociate(@PathVariable("id") String id) {
         return ResponseEntity.ok(aggregation.getAssociateById(id));
     }
 
     @PostMapping
-    private ResponseEntity<Void> createAssociate(@Valid @RequestBody CreateAssociateParam params) {
+    public ResponseEntity<Void> createAssociate(@Valid @RequestBody CreateAssociateParam params) {
         String id = aggregation.createAssociate(params);
         return ResponseEntity.created(URI.create("/associate/" + id)).build();
     }

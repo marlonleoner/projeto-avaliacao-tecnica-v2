@@ -22,23 +22,23 @@ public class SessionController {
     private final SessionAggregation aggregation;
 
     @GetMapping
-    private ResponseEntity<List<SessionDTO>> getAllSessions() {
+    public ResponseEntity<List<SessionDTO>> getAllSessions() {
         return ResponseEntity.ok(aggregation.getAllSessions());
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<SessionDTO> getSession(@PathVariable("id") String sessionId) {
+    public ResponseEntity<SessionDTO> getSession(@PathVariable("id") String sessionId) {
         return ResponseEntity.ok(aggregation.getSession(sessionId));
     }
 
     @PostMapping
-    private ResponseEntity<Void> createSession(@Valid @RequestBody CreateSessionParam params) {
+    public ResponseEntity<Void> createSession(@Valid @RequestBody CreateSessionParam params) {
         String sessionId = aggregation.createSession(params);
         return ResponseEntity.created(URI.create("/session/" + sessionId)).build();
     }
 
     @GetMapping("/{id}/result")
-    private ResponseEntity<ResultSessionDTO> getResultSession(@PathVariable("id") String sessionId) {
+    public ResponseEntity<ResultSessionDTO> getResultSession(@PathVariable("id") String sessionId) {
         return ResponseEntity.ok(aggregation.getResultSession(sessionId));
     }
 }

@@ -21,12 +21,12 @@ public class ContractController {
     private final ContractAggregation aggregation;
 
     @GetMapping
-    private ResponseEntity<List<ContractDTO>> getAllContracts() {
+    public ResponseEntity<List<ContractDTO>> getAllContracts() {
         return ResponseEntity.ok(aggregation.getAllContracts());
     }
 
     @GetMapping("/{slug}")
-    private ResponseEntity<ContractDTO> getContract(@PathVariable String slug) {
+    public ResponseEntity<ContractDTO> getContract(@PathVariable String slug) {
         return ResponseEntity.ok(aggregation.getContract(slug));
     }
 
