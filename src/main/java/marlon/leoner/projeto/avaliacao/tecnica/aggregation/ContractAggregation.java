@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Service
 public class ContractAggregation {
 
-    private final static String CONTRACT_ALREADY_EXISTS = "Já existe uma pauta cadastrada com este nome.";
+    private static final String CONTRACT_ALREADY_EXISTS = "Já existe uma pauta cadastrada com este nome.";
 
     private final ContractService service;
 
@@ -41,8 +41,8 @@ public class ContractAggregation {
     }
 
     private void validateContractExists(String slug) {
-        Optional<Contract> contract = service.getContractBySlug(slug);
-        contract.ifPresent((_contract) -> {
+        Optional<Contract> contractOptional = service.getContractBySlug(slug);
+        contractOptional.ifPresent((contract) -> {
             throw new ObjectAlreadyExistsException(CONTRACT_ALREADY_EXISTS);
         });
     }

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class VoteAggregation {
 
-    private final static String SESSION_IS_CLOSE = "A sessão para a pauta informada já foi finalizada.";
+    private static final String SESSION_IS_CLOSE = "A sessão para a pauta informada já foi finalizada.";
     private static final String USER_ALREADY_VOTE = "O associado informado já votou nesta sessão.";
     private static final String USER_NOT_ABLE_VOTE = "O associado informado não possui permissão para votar.";
 

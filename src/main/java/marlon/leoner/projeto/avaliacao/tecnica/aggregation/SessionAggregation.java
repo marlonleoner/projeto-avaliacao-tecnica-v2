@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class SessionAggregation {
 
-    private final static String SESSION_IS_OPEN = "A pauta informada já possui uma sessão em andamento.";
-    private final static String RESULT_FAILED = "Só é possível visualizar o resultado após o encerramento da sessão.";
+    private static final String SESSION_IS_OPEN = "A pauta informada já possui uma sessão em andamento.";
+    private static final String RESULT_FAILED = "Só é possível visualizar o resultado após o encerramento da sessão.";
 
     private final SessionService sessionService;
 
@@ -43,9 +43,9 @@ public class SessionAggregation {
     }
 
     private void validateSessionExists(String contractSlug) {
-        Optional<Session> session = sessionService.getSessionByContractSlug(contractSlug);
-        session.ifPresent((_session) -> {
-            if (_session.isOpened()) throw new ObjectAlreadyExistsException(SESSION_IS_OPEN);
+        Optional<Session> sessionOptional = sessionService.getSessionByContractSlug(contractSlug);
+        sessionOptional.ifPresent((session) -> {
+            if (session.isOpened()) throw new ObjectAlreadyExistsException(SESSION_IS_OPEN);
         });
     }
 
