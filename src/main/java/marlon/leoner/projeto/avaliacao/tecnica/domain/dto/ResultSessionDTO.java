@@ -31,7 +31,7 @@ public class ResultSessionDTO {
         this.noVotes = votes.stream().filter(Vote::isNo).count();
         double pYesVotes = (this.yesVotes * 100.0d) / totalVotes;
         double pNoVotes = (this.noVotes  * 100.0d) / totalVotes;
-        this.percentageYesVotes = new BigDecimal(pYesVotes).setScale(2, RoundingMode.HALF_UP).doubleValue();
-        this.percentageNoVotes = new BigDecimal(pNoVotes).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        this.percentageYesVotes = BigDecimal.valueOf(pYesVotes).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        this.percentageNoVotes = BigDecimal.valueOf(pNoVotes).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }
