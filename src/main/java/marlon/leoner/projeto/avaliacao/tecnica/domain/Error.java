@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Error {
 
-    private String error;
+    private String code;
 
     private List<String> message;
 }
