@@ -3,6 +3,7 @@ package marlon.leoner.projeto.avaliacao.tecnica.domain;
 import lombok.*;
 import marlon.leoner.projeto.avaliacao.tecnica.domain.dto.ResultSessionDTO;
 import marlon.leoner.projeto.avaliacao.tecnica.domain.dto.SessionDTO;
+import marlon.leoner.projeto.avaliacao.tecnica.enums.StatusSessionEnum;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,6 +28,8 @@ public class Session extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "contract_id")
     private Contract contract;
+
+    private StatusSessionEnum status;
 
     @OneToMany(mappedBy = "session", fetch = FetchType.LAZY)
     private List<Vote> votes;
