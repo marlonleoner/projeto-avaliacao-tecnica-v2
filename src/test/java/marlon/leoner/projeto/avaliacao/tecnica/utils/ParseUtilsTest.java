@@ -14,7 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class ParseUtilsTest {
+class ParseUtilsTest {
     @Test
     @DisplayName("Sucesso ao mascarar o CPF do cliente")
     void validarSucessoAoMascarar() {

@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class AssociateServiceTest {
+class AssociateServiceTest {
 
     private final static String ASSOCIATE_ID = "e6a7e9ea-1d2c-4e02-ad26-236d4560ab59";
 
