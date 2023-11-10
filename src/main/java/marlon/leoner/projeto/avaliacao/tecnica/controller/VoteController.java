@@ -1,6 +1,5 @@
 package marlon.leoner.projeto.avaliacao.tecnica.controller;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -35,7 +34,7 @@ public class VoteController {
             @ApiResponse(code = 200, message = "Sucesso ao buscar todos os votos.", response = VoteDTO.class, responseContainer = "List")
     })
     @GetMapping
-    private ResponseEntity<List<VoteDTO>> getAllVotes() {
+    public ResponseEntity<List<VoteDTO>> getAllVotes() {
         return ResponseEntity.ok(aggregation.getAllVotes());
     }
 
@@ -49,7 +48,7 @@ public class VoteController {
             @ApiResponse(code = 404, message = "O voto não existe")
     })
     @GetMapping("/{id}")
-    private ResponseEntity<VoteDTO> getVote(@PathVariable("id") String voteId) {
+    public ResponseEntity<VoteDTO> getVote(@PathVariable("id") String voteId) {
         return ResponseEntity.ok(aggregation.getVote(voteId));
     }
 
@@ -62,7 +61,7 @@ public class VoteController {
             @ApiResponse(code = 201, message = "Sucesso ao cadastrar um novo voto.")
     })
     @PostMapping
-    private ResponseEntity<Void> createVote(@Valid @RequestBody CreateVoteParam params) {
+    public ResponseEntity<Void> createVote(@Valid @RequestBody CreateVoteParam params) {
         String voteId = aggregation.createVote(params);
         return ResponseEntity.created(URI.create("/vote/" + voteId)).build();
     }
