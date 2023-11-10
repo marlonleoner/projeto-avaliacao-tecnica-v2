@@ -34,7 +34,7 @@ public class Session extends BaseEntity {
     @OneToMany(mappedBy = "session", fetch = FetchType.LAZY)
     private List<Vote> votes;
 
-    public Boolean isOpened() {
+    public boolean isOpened() {
         return closedAt.after(new Date());
     }
 
