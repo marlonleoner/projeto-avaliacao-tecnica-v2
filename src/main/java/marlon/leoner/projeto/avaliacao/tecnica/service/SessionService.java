@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class SessionService {
 
-    private final static String SESSION_NOT_FOUND = "A sessão informada não foi encontrada.";
+    private static final String SESSION_NOT_FOUND = "A sessão informada não foi encontrada.";
 
     private final SessionRepository repository;
 

@@ -17,8 +17,8 @@ import java.util.Optional;
 @Service
 public class AssociateService {
 
-    private final static String ASSOCIATE_NOT_FOUND = "Não encontramos nenhum associado com o identificador informado.";
-    private final static String ASSOCIATE_ALREADY_EXISTS = "O CPF informado já foi cadastrado anteriormente.";
+    private static final String ASSOCIATE_NOT_FOUND = "Não encontramos nenhum associado com o identificador informado.";
+    private static final String ASSOCIATE_ALREADY_EXISTS = "O CPF informado já foi cadastrado anteriormente.";
 
     private final AssociateRepository repository;
 
@@ -38,8 +38,8 @@ public class AssociateService {
     }
 
     public void validateAssociateExists(String cpf) {
-        Optional<Associate> associate = repository.findByCpf(cpf);
-        associate.ifPresent((_associate) -> {
+        Optional<Associate> associateOptional = repository.findByCpf(cpf);
+        associateOptional.ifPresent((associate) -> {
             throw new ObjectAlreadyExistsException(ASSOCIATE_ALREADY_EXISTS);
         });
     }

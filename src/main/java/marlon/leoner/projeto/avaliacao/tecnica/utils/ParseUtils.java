@@ -5,7 +5,11 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ParseUtils {
 
-    private final static String INVALID_CPF = "O CPF informado é inválido.";
+    private static final String INVALID_CPF = "O CPF informado é inválido.";
+
+    private ParseUtils() {
+        // empty constructor
+    }
 
     public static String maskCpf(String cpf) {
         if (StringUtils.isBlank(cpf) || cpf.length() != 11) {

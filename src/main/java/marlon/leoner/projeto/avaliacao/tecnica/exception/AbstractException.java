@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public abstract class AbstractException extends RuntimeException {
 
-    private String id;
+    private final String id;
 
-    public AbstractException(String message) {
+    protected AbstractException(String message) {
         super(message);
         this.id = this.getClass().getSimpleName().replace("Exception", "Error");
     }

@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class ContractService {
 
-    private final static String CONTRACT_NOT_FOUND = "Não foi possível encontrar a pauta desejada.";
+    private static final String CONTRACT_NOT_FOUND = "Não foi possível encontrar a pauta desejada.";
 
     private final ContractRepository repository;
 

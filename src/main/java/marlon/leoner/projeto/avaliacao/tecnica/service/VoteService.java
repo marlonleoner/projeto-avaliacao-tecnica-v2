@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class VoteService {
 
-    private final static String VOTE_NOT_FOUND = "Não encontramos o voto informado.";
+    private static final String VOTE_NOT_FOUND = "Não encontramos o voto informado.";
 
     private final VoteRepository repository;
 
@@ -31,7 +31,7 @@ public class VoteService {
     public Optional<Vote> getVoteById(String voteId) {
         return repository.findById(voteId);
     }
-    
+
     public Vote getVoteOrExceptionById(String voteId) {
         Optional<Vote> vote = this.getVoteById(voteId);
         return vote.orElseThrow(() -> new ObjectNotFoundException(VOTE_NOT_FOUND));

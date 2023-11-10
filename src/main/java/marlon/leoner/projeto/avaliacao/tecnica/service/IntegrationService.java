@@ -18,10 +18,10 @@ import java.util.Objects;
 public class IntegrationService {
 
     @Value("${cpf.validator.token}")
-    private String TOKEN;
+    private String token;
 
     @Value("${cpf.validator.type}")
-    private String TYPE;
+    private String type;
 
     public Boolean isCpfValid(String cpf) {
         ValidateCpfResponse validate = this.validateCpf(cpf);
@@ -34,9 +34,9 @@ public class IntegrationService {
 
     private ValidateCpfResponse validateCpf(String cpf) {
         Map<String, String> params = new HashMap<>();
-        params.put("token", TOKEN);
+        params.put("token", token);
         params.put("cpf", cpf);
-        params.put("type", TYPE);
+        params.put("type", type);
 
         UriComponents url = UriComponentsBuilder
                 .fromHttpUrl("https://api.invertexto.com/v1/validator?token={token}&value={cpf}&type={type}")
