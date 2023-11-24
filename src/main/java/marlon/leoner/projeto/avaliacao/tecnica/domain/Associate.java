@@ -21,7 +21,7 @@ public class Associate extends BaseEntity {
     @Column(name = "able_to_vote")
     private Boolean ableToVote;
 
-    public Boolean isAbleToVote() {
+    public boolean isAbleToVote() {
         return ableToVote;
     }
 

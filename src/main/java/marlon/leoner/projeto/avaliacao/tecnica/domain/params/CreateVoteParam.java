@@ -17,13 +17,13 @@ public class CreateVoteParam {
     private String associateId;
 
     @NotNull(message = "O campo 'vote' é obrigatório.")
-    @Pattern(regexp = "([S]|[N])", message = "Os valores para o campo 'vote' são: S ou N")
+    @Pattern(regexp = "^[SN]", message = "Os valores para o campo 'vote' são: S ou N")
     private String vote;
 
     public Vote toEntity() {
-        Vote vote = new Vote();
-        vote.setValue(VoteTypeEnum.getInstance(this.vote));
+        Vote entity = new Vote();
+        entity.setValue(VoteTypeEnum.getInstance(this.vote));
 
-        return vote;
+        return entity;
     }
 }
