@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -86,22 +85,16 @@ public class SessionAggregation {
 
     public void openSessions() {
         List<Session> sessions = sessionService.getCreatedSessions();
-        sessions.forEach(session -> {
-            rabbitMQTemplate.convertAndSend(Constants.OPEN_SESSION_QUEUE, session.getId());
-        });
+        sessions.forEach(session -> rabbitMQTemplate.convertAndSend(Constants.OPEN_SESSION_QUEUE, session.getId()));
     }
 
     public void closeSessions() {
         List<Session> sessions = sessionService.getOpenSessions();
-        sessions.forEach(session -> {
-            rabbitMQTemplate.convertAndSend(Constants.CLOSE_SESSION_QUEUE, session.getId());
-        });
+        sessions.forEach(session -> rabbitMQTemplate.convertAndSend(Constants.CLOSE_SESSION_QUEUE, session.getId()));
     }
 
     public void notifySessions() {
         List<Session> sessions = sessionService.getClosedSessions();
-        sessions.forEach(session -> {
-            rabbitMQTemplate.convertAndSend(Constants.NOTIFY_SESSION_RESULT_QUEUE, session.getId());
-        });
+        sessions.forEach(session -> rabbitMQTemplate.convertAndSend(Constants.NOTIFY_SESSION_RESULT_QUEUE, session.getId()));
     }
 }
