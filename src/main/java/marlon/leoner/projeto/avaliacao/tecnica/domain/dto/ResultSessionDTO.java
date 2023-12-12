@@ -34,4 +34,8 @@ public class ResultSessionDTO {
         this.percentageYesVotes = BigDecimal.valueOf(pYesVotes).setScale(2, RoundingMode.HALF_UP).doubleValue();
         this.percentageNoVotes = BigDecimal.valueOf(pNoVotes).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
+
+    public String getLabel() {
+        return (this.yesVotes > this.noVotes ? "" : "NÃO ") + "APROVADA";
+    }
 }

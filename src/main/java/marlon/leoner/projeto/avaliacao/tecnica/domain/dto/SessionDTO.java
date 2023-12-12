@@ -13,6 +13,8 @@ public class SessionDTO {
 
     private Date closedAt;
 
+    private String status;
+
     private ContractDTO contract;
 
     private Long totalVotes;

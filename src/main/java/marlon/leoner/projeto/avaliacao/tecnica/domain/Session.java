@@ -31,11 +31,27 @@ public class Session extends BaseEntity {
 
     private StatusSessionEnum status;
 
-    @OneToMany(mappedBy = "session", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "session", fetch = FetchType.EAGER)
     private List<Vote> votes;
 
+    public boolean isCreated() {
+        return status.isCreated();
+    }
+
     public boolean isOpened() {
-        return closedAt.after(new Date());
+        return status.isOpened();
+    }
+
+    public boolean allowOpen() {
+        return this.isCreated() && this.openedAt.before(new Date());
+    }
+
+    public boolean allowClose() {
+        return this.isOpened() && this.closedAt.before(new Date());
+    }
+
+    public boolean allowResult() {
+        return status.isClosed() || status.isNotified();
     }
 
     public SessionDTO toDto() {
@@ -44,6 +60,7 @@ public class Session extends BaseEntity {
         dto.setContract(this.contract.toDto());
         dto.setOpenedAt(this.openedAt);
         dto.setClosedAt(this.closedAt);
+        dto.setStatus(this.status.getDescription());
         dto.setTotalVotes((long) this.votes.size());
 
         return dto;
@@ -61,5 +78,14 @@ public class Session extends BaseEntity {
 
     public ResultSessionDTO toResultDto() {
         return new ResultSessionDTO(this);
+    }
+
+    public String getResult() {
+        ResultSessionDTO result = this.toResultDto();
+
+        return "A pauta " + this.contract.getName() + " (sessão " + this.id + ") foi " + result.getLabel() +
+                ". A opção 'SIM' recebeu " + result.getPercentageYesVotes() + "% dos votos e a opção 'NÃO' recebeu " +
+                result.getPercentageNoVotes() + "% dos votos. A sessão contou com a participação de " +
+                result.getTotalVotes() + " associado(s).";
     }
 }

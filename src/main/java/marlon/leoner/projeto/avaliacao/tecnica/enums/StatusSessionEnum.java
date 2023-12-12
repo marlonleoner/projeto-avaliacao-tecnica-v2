@@ -7,10 +7,10 @@ import lombok.Getter;
 @Getter
 public enum StatusSessionEnum {
 
-    CREATED(1, "Sessão criada."),
+    CREATED(1, "Sessão cadastrada"),
     OPEN(2, "Sessão aberta"),
     CLOSED(3, "Sessão encerrada"),
-    NOTIFIED(4, "Resultado nofiticado");
+    NOTIFIED(4, "Resultado da sessão notificada aos associados");
 
     private final Integer id;
 
@@ -24,5 +24,21 @@ public enum StatusSessionEnum {
         }
 
         return null;
+    }
+
+    public boolean isCreated() {
+        return CREATED.equals(this);
+    }
+
+    public boolean isOpened() {
+        return OPEN.equals(this);
+    }
+
+    public boolean isClosed() {
+        return CLOSED.equals(this);
+    }
+
+    public boolean isNotified() {
+        return NOTIFIED.equals(this);
     }
 }

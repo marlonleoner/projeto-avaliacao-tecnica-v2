@@ -3,6 +3,7 @@ package marlon.leoner.projeto.avaliacao.tecnica.service;
 import lombok.AllArgsConstructor;
 
 import marlon.leoner.projeto.avaliacao.tecnica.domain.Session;
+import marlon.leoner.projeto.avaliacao.tecnica.enums.StatusSessionEnum;
 import marlon.leoner.projeto.avaliacao.tecnica.exception.ObjectNotFoundException;
 import marlon.leoner.projeto.avaliacao.tecnica.repository.SessionRepository;
 
@@ -31,6 +32,22 @@ public class SessionService {
         return repository.findByContractId(contractId);
     }
 
+    private List<Session> getSessionsByStatus(StatusSessionEnum status) {
+        return repository.findByStatus(status);
+    }
+
+    public List<Session> getCreatedSessions() {
+        return this.getSessionsByStatus(StatusSessionEnum.CREATED);
+    }
+
+    public List<Session> getOpenSessions() {
+        return this.getSessionsByStatus(StatusSessionEnum.OPEN);
+    }
+
+    public List<Session> getClosedSessions() {
+        return this.getSessionsByStatus(StatusSessionEnum.CLOSED);
+    }
+
     public void save(Session session) {
         repository.save(session);
     }
@@ -43,6 +60,4 @@ public class SessionService {
     public void createSession(Session session) {
         this.save(session);
     }
-
-
 }

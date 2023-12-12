@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 public class VoteAggregation {
 
     private static final String SESSION_IS_CLOSE = "A sessão para a pauta informada já foi finalizada.";
+    private static final String SESSION_IS_NOT_OPEN = "A sessão informada não encontra-se aberta para votação.";
     private static final String USER_ALREADY_VOTE = "O associado informado já votou nesta sessão.";
     private static final String USER_NOT_ABLE_VOTE = "O associado informado não possui permissão para votar.";
 
@@ -64,7 +65,7 @@ public class VoteAggregation {
 
     private void validateSessionOpened(Session session) {
         if (!session.isOpened()) {
-            throw new SessionException(SESSION_IS_CLOSE);
+            throw new SessionException(SESSION_IS_NOT_OPEN);
         }
     }
 
