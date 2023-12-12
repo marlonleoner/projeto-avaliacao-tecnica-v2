@@ -60,6 +60,4 @@ public class AssociateService {
     private void save(Associate associate) {
         this.repository.save(associate);
     }
-
-
 }
