@@ -27,8 +27,8 @@ public class SessionService {
         return repository.findById(id);
     }
 
-    public Optional<Session> getSessionByContractSlug(String contractSlug) {
-        return repository.findByContractSlug(contractSlug);
+    public Optional<Session> getSessionByContractId(String contractId) {
+        return repository.findByContractId(contractId);
     }
 
     public void save(Session session) {

@@ -27,8 +27,8 @@ public class ContractAggregation {
                 .collect(Collectors.toList());
     }
 
-    public ContractDTO getContract(String slug) {
-        Contract contract = service.getContractOrExceptionBySlug(slug);
+    public ContractDTO getContract(String id) {
+        Contract contract = service.getContractOrExceptionById(id);
 
         return contract.toDto();
     }
@@ -37,7 +37,7 @@ public class ContractAggregation {
         this.validateContractExists(params.getSlug());
         Contract contract = service.createContract(params);
 
-        return contract.getSlug();
+        return contract.getId();
     }
 
     private void validateContractExists(String slug) {

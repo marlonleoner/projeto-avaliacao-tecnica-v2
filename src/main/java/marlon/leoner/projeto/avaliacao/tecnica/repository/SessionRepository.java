@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface SessionRepository extends JpaRepository<Session, String> {
 
-    Optional<Session> findByContractSlug(String contractSlug);
+    Optional<Session> findByContractId(String contractId);
 }

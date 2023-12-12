@@ -25,14 +25,14 @@ public class ContractController {
         return ResponseEntity.ok(aggregation.getAllContracts());
     }
 
-    @GetMapping("/{slug}")
-    public ResponseEntity<ContractDTO> getContract(@PathVariable String slug) {
-        return ResponseEntity.ok(aggregation.getContract(slug));
+    @GetMapping("/{id}")
+    public ResponseEntity<ContractDTO> getContract(@PathVariable String id) {
+        return ResponseEntity.ok(aggregation.getContract(id));
     }
 
     @PostMapping
     public ResponseEntity<Void> createContract(@Valid @RequestBody CreateContractParam params) {
-        String slug = aggregation.createContract(params);
-        return ResponseEntity.created(URI.create("/contract/" + slug)).build();
+        String id = aggregation.createContract(params);
+        return ResponseEntity.created(URI.create("/contract/" + id)).build();
     }
 }

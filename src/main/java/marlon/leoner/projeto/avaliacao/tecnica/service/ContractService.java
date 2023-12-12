@@ -24,6 +24,10 @@ public class ContractService {
         return repository.findAll();
     }
 
+    public Optional<Contract> getContractById(String id) {
+        return repository.findById(id);
+    }
+
     public Optional<Contract> getContractBySlug(String slug) {
         return repository.findBySlug(slug);
     }
@@ -32,8 +36,8 @@ public class ContractService {
         repository.save(contract);
     }
 
-    public Contract getContractOrExceptionBySlug(String slug) {
-        Optional<Contract> contract = this.getContractBySlug(slug);
+    public Contract getContractOrExceptionById(String id) {
+        Optional<Contract> contract = this.getContractById(id);
         return contract.orElseThrow(() -> new ObjectNotFoundException(CONTRACT_NOT_FOUND));
     }
 

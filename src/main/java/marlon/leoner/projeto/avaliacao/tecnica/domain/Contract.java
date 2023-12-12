@@ -21,6 +21,7 @@ public class Contract extends BaseEntity {
 
     public ContractDTO toDto() {
         ContractDTO dto = new ContractDTO();
+        dto.setId(this.getId());
         dto.setName(this.getName());
         dto.setDescription(this.getDescription());
         dto.setSlug(this.getSlug());

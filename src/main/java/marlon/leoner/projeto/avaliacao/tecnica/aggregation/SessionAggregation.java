@@ -42,24 +42,24 @@ public class SessionAggregation {
         return session.toDto();
     }
 
-    private void validateSessionExists(String contractSlug) {
-        Optional<Session> sessionOptional = sessionService.getSessionByContractSlug(contractSlug);
+    private void validateSessionExists(String contractId) {
+        Optional<Session> sessionOptional = sessionService.getSessionByContractId(contractId);
         sessionOptional.ifPresent((session) -> {
             if (session.isOpened()) throw new ObjectAlreadyExistsException(SESSION_IS_OPEN);
         });
     }
 
-    private Contract getContract(String contractSlug) {
-        return contractService.getContractOrExceptionBySlug(contractSlug);
+    private Contract getContract(String id) {
+        return contractService.getContractOrExceptionById(id);
     }
 
     public String createSession(CreateSessionParam params) {
-        this.validateSessionExists(params.getContractSlug());
+        this.validateSessionExists(params.getContractId());
 
         Date now = new Date();
 
         Session session = params.toEntity();
-        session.setContract(this.getContract(params.getContractSlug()));
+        session.setContract(this.getContract(params.getContractId()));
         session.setOpenedAt(now);
         session.setClosedAt(this.calculateClosedAt(now, session.getDuration()));
         sessionService.createSession(session);
